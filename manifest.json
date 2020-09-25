@@ -1,0 +1,16 @@
+{
+  "manifest_version": 2,
+
+  "name": "Lango Plugin",
+  "description": "This extension will make your life slitely better",
+  "version": "1.0",
+
+  "browser_action": {
+   "default_icon": "icon.png",
+   "default_popup": "popup.html"
+  },
+  "permissions": [
+   "activeTab"
+   ]
+}
+

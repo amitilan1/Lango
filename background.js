@@ -1,8 +1,9 @@
-window.bears = {}
-chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-  window.bears[request.url] = request.count
-})
+// Listening for messages
+chrome.runtime.onMessage.addListener(receiver);
 
-chrome.browserAction.onClicked.addListener(function (tab) {
-  chrome.tabs.create({url: 'popup.html'})
-})
+function receiver(request, sender, sendResponse) {
+  // Showing the page action if the content script says to
+  if (request.message === "show_page_action") {
+    chrome.pageAction.show(sender.tab.id);
+  }
+}

@@ -9,6 +9,9 @@
       "js": ["content.js"]
     }
   ],
+  "background":  {
+    "scripts": ["background.js"]
+  },
   "permissions": [
           "input"
         ]

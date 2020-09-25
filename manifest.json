@@ -14,5 +14,15 @@
   },
   "permissions": [
           "input"
-        ]
+        ],
+  "input_components": [
+    {
+      "name": "Test IME",
+      "type": "ime",
+      "id": "test",
+      "description": "Test IME",
+      "language": "en-US",
+      "layouts": ["us::eng"]
+    }
+  ]
 }

@@ -1,7 +1,7 @@
 const HEB_LAYOUT = "/'קראטוןםפ][שדגכעיחלךף,\זסבהנמצתץ.";
 const ENG_LAYOUT = "qwertyuiop[]asdfghjkl;'\zxcvbnm,./";
 // TODO add arabic
-const ARAB_LAYOUT = "";
+const ARAB_LAYOUT = "/.,منبفثخز';لكجغفدسا\][بويويترآوق";
 
 let SRC_LAYOUT, TGT_LAYOUT;
 

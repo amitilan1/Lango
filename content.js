@@ -2,8 +2,7 @@ let lango_flag = false;
 let space_flag = false;
 const HEB_LAYOUT = "/'קראטוןםפ][שדגכעיחלךף,\זסבהנמצתץ.";
 const ENG_LAYOUT = "qwertyuiop[]asdfghjkl;'\zxcvbnm,./";
-// TODO add arabic
-//const ARAB_LAYOUT = "";
+const ARAB_LAYOUT = "/.,منبفثخز';لكجغفدسا\][بويويترآوق";
 
 var SRC_LAYOUT, TGT_LAYOUT;
 var LANG_NUM = 2;

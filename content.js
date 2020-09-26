@@ -1,4 +1,6 @@
 // Things are happening
+
+
 console.log("Page action chrome extension is running!");
 
 let inputs = document.getElementsByTagName("input");
@@ -22,19 +24,25 @@ function focus_out() {
 function on_key_up() {
     console.log(this.value[this.value.length - 1]);
     if (this.value[this.value.length - 1] === ' ') {
-        detectLanguage(this.value);
+        get_dict(this.value);
     }
 }
 
-function detectLanguage(inputText) {
-        chrome.i18n.detectLanguage(inputText, function(result) {
-          var outputLang = "Detected Language: ";
-          var outputPercent = "Language Percentage: ";
-          for(i = 0; i < result.languages.length; i++) {
-            outputLang += result.languages[i].language + " ";
-            outputPercent +=result.languages[i].percentage + " ";
-          }
-          console.log(outputLang + "\n" + outputPercent + "\nReliable: " + result.isReliable);
-        });
-      }
 
+
+function get_dict(inputText){
+    var invocation = new XMLHttpRequest();
+    var url = "https://dictapi.lexicala.com/search?source=global&language=he&text=" + inputText;
+    invocation.open("GET", url, true, 'Lango', 'hapshuta');
+    invocation.withCredentials = true;
+    invocation.send();
+    console.log(invocation)
+}
+
+
+function processRequest(e) {
+    if (xhr.readyState == 4 && xhr.status == 200) {
+        let response = JSON.parse(xhr.responseText);
+        document.querySelector("#ipText").innerHTML = response.ip;
+    }
+}

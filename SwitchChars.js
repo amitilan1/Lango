@@ -22,41 +22,14 @@ function detectChars(str) {
         SRC_LAYOUT = HEB_LAYOUT;
         return 2;
 
-    } else {
-        // Arabic
-        SRC_LAYOUT = ARAB_LAYOUT;
-        return 3;
-    }
+     }
+        // else {
+    //     // Arabic
+    //     SRC_LAYOUT = ARAB_LAYOUT;
+    //     return 3;
+    // }
 }
 
-/**
- *
- * @param str - the input string
- * @param cur_lang - the language the current chars are in
- * @param tgt_lang - the language to switch the chars to
- * @returns new_string - the string with the characters replaced
- */
-function switchChars(str, cur_lang, tgt_lang) {
-    var new_string = "";
-
-    switch (tgt_lang) {
-        // according to target language, choose which two layouts are active
-        case 1:
-            TGT_LAYOUT = ENG_LAYOUT;
-        case 2:
-            TGT_LAYOUT = HEB_LAYOUT;
-        case 3:
-            TGT_LAYOUT = ARAB_LAYOUT;
-    }
-
-    for (var i = 0; i < str.length; i++) {
-        // switch the characters according to the mapping
-        var indexInArray = SRC_LAYOUT.indexOf(stringToTranslate[i]);
-        newString += TGT_LAYOUT[i];
-    }
-
-    return new_string;
-}
 
 /**
  * detect the language the string is written in

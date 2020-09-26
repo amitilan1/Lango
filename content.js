@@ -86,27 +86,26 @@ function check_lango(phrase, language) {
     return (!get_dict(words[0], language)) && (!get_dict(words[1], language));
 }
 
-/**
- * check if the input text is in the given language.
- * return true if it is, false otherwise
- * @param inputText
- * @prarm language
- */
-function get_dict(inputText){
-    // var invocation = new XMLHttpRequest();
-    // var url = "https://dictapi.lexicala.com/search?source=global&language=he&text=" + inputText;
-    // invocation.open("GET", url, true, 'Lango', 'hapshuta');
-    // invocation.withCredentials = true;
-    // invocation.send();
-    // console.log(invocation);
-    return false;
-}
+
+async function get_dict(inputText){
+        var myHeaders = new Headers();
+    myHeaders.append("Authorization", "Basic TGFuZ286aGFwc2h1dGE=");
+
+    var num = 0;
+    var requestOptions = {
+      method: 'GET',
+      headers: myHeaders,
+      redirect: 'follow'
+    };
 
 
-function processRequest(e) {
-    if (xhr.readyState == 4 && xhr.status == 200) {
-        let response = JSON.parse(xhr.responseText);
-        document.querySelector("#ipText").innerHTML = response.ip;
+    const data = await fetch("https://dictapi.lexicala.com/search?source=global&language=he&text=" + inputText, requestOptions)
+      .then(response => response.json())
+      .then(result => result.n_results)
+      .catch(error => console.log('error', error));
+
+     num += data;
+     return(num);
     }
 }
 

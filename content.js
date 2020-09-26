@@ -123,20 +123,26 @@ function processRequest(e) {
 function switchChars(str, cur_lang, tgt_lang) {
     var new_string = "";
 
+    console.log("string to switch:"+str);
+
     switch (tgt_lang) {
         // according to target language, choose which two layouts are active
-        case 1:
+        case 0:
             TGT_LAYOUT = ENG_LAYOUT;
-        case 2:
+        case 1:
             TGT_LAYOUT = HEB_LAYOUT;
         //case 3:
         //    TGT_LAYOUT = ARAB_LAYOUT;
     }
 
     for (var i = 0; i < str.length; i++) {
+        if (str[i] === ' ') {
+            new_string+=' ';
+            continue;
+        }
         // switch the characters according to the mapping
         var indexInArray = SRC_LAYOUT.indexOf(str[i]);
-        new_string += TGT_LAYOUT[i];
+        new_string += TGT_LAYOUT[indexInArray];
     }
 
     return new_string;
@@ -145,19 +151,19 @@ function switchChars(str, cur_lang, tgt_lang) {
 /**
  * detect which language the characters in the input string belong to
  * @param str - the input string
- * TODO - currently returns 1 for English, 2 for Hebrew, 3 for Arabic
+ * TODO - currently returns 0 for English, 1 for Hebrew, 2 for Arabic
  */
 function detectChars(str) {
     var char_code = String(str.trim().charCodeAt(0));
     if (64 < char_code < 91 || 96 < char_code < 123) {
         // English
         SRC_LAYOUT = ENG_LAYOUT;
-        return 1;
+        return 0;
     }
     if (1424 <= char_code <= 1535) {
         // Hebrew
         SRC_LAYOUT = HEB_LAYOUT;
-        return 2;
+        return 1;
 
      }
         // else {

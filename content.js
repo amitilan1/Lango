@@ -9,6 +9,7 @@ let SRC_LAYOUT, TGT_LAYOUT;
 let LANG_NUM = 2;
 
 console.log("Page action chrome extension is running!");
+console.log("flags: "+lango_flag+space_flag);
 
 let inputs = document.getElementsByTagName("input");
 
@@ -38,6 +39,7 @@ function focus_out() {
  * handle letter after typed
  */
 function on_key_up() {
+
     // if the the flag is true - switch every letter
     if (lango_flag){
         var new_letter = switchChars(this.value[this.value.length - 1], SRC_LAYOUT, TGT_LAYOUT);
@@ -45,13 +47,13 @@ function on_key_up() {
         return;
     }
 
-    // when press ENTER - init the flag
-    if (this.value[this.value.length - 1] === 13){
-        console.log("enter pressed");
-        lango_flag  = false;
-        space_flag = false;
-        return;
-    }
+    // // when press ENTER - init the flag
+    // if (this.value[this.value.length - 1] === 13){
+    //     console.log("enter pressed");
+    //     lango_flag  = false;
+    //     space_flag = false;
+    //     return;
+    // }
 
     // when two words were typed - check if need to lango
     if (this.value[this.value.length - 1] === ' ') {
@@ -98,7 +100,7 @@ function get_dict(inputText){
     invocation.open("GET", url, true, 'Lango', 'hapshuta');
     invocation.withCredentials = true;
     invocation.send();
-    console.log(invocation)
+    console.log(invocation);
 }
 
 

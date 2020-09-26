@@ -2,16 +2,39 @@
 console.log("Page action chrome extension is running!");
 
 let inputs = document.getElementsByTagName("input");
-var values = ['#f3d021', '#a00202', '#0d447f'];
+
 var elm;
-// int elm_val;elm_name;
-for (elm of inputs){
-    console.log(elm.name);
-    elm_name = elm.name;
-    elm_val = elm.value;
-    elm.addEventListener("focusin", function () {
-         console.log("value:"+elm_val);
-         document.getElementsByName(elm_name)[0].style.backgroundColor = "yellow";
-     });
+for (elm of inputs) {
+    elm.addEventListener("focusin", focus_in, false);
+    elm.addEventListener("focusout", focus_out, false);
+    elm.addEventListener("keyup", on_key_up, false);
 }
+
+function focus_in() {
+    console.log("name:" + this.name);
+    this.style.backgroundColor = "yellow";
+}
+
+function focus_out() {
+    this.style.backgroundColor = "white";
+}
+
+function on_key_up() {
+    console.log(this.value[this.value.length - 1]);
+    if (this.value[this.value.length - 1] === ' ') {
+        detectLanguage(this.value);
+    }
+}
+
+function detectLanguage(inputText) {
+        chrome.i18n.detectLanguage(inputText, function(result) {
+          var outputLang = "Detected Language: ";
+          var outputPercent = "Language Percentage: ";
+          for(i = 0; i < result.languages.length; i++) {
+            outputLang += result.languages[i].language + " ";
+            outputPercent +=result.languages[i].percentage + " ";
+          }
+          console.log(outputLang + "\n" + outputPercent + "\nReliable: " + result.isReliable);
+        });
+      }
 

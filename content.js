@@ -5,11 +5,10 @@ const ENG_LAYOUT = "qwertyuiop[]asdfghjkl;'\zxcvbnm,./";
 // TODO add arabic
 //const ARAB_LAYOUT = "";
 
-let SRC_LAYOUT, TGT_LAYOUT;
-let LANG_NUM = 2;
+var SRC_LAYOUT, TGT_LAYOUT;
+var LANG_NUM = 2;
 
 console.log("Page action chrome extension is running!");
-console.log("flags: "+lango_flag+space_flag);
 
 let inputs = document.getElementsByTagName("input");
 
@@ -95,12 +94,13 @@ function check_lango(phrase, language) {
  * @prarm language
  */
 function get_dict(inputText){
-    var invocation = new XMLHttpRequest();
-    var url = "https://dictapi.lexicala.com/search?source=global&language=he&text=" + inputText;
-    invocation.open("GET", url, true, 'Lango', 'hapshuta');
-    invocation.withCredentials = true;
-    invocation.send();
-    console.log(invocation);
+    // var invocation = new XMLHttpRequest();
+    // var url = "https://dictapi.lexicala.com/search?source=global&language=he&text=" + inputText;
+    // invocation.open("GET", url, true, 'Lango', 'hapshuta');
+    // invocation.withCredentials = true;
+    // invocation.send();
+    // console.log(invocation);
+    return false;
 }
 
 
@@ -119,7 +119,7 @@ function processRequest(e) {
  * @param tgt_lang - the language to switch the chars to
  * @returns new_string - the string with the characters replaced
  */
-// TODO fix API
+// TODO fix API?
 function switchChars(str, cur_lang, tgt_lang) {
     var new_string = "";
 
@@ -135,8 +135,8 @@ function switchChars(str, cur_lang, tgt_lang) {
 
     for (var i = 0; i < str.length; i++) {
         // switch the characters according to the mapping
-        var indexInArray = SRC_LAYOUT.indexOf(stringToTranslate[i]);
-        newString += TGT_LAYOUT[i];
+        var indexInArray = SRC_LAYOUT.indexOf(str[i]);
+        new_string += TGT_LAYOUT[i];
     }
 
     return new_string;
